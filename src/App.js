@@ -1,15 +1,28 @@
 import React from 'react';
-import {Route, BrowserRouter as Router, Switch} from "react-router-dom";
-import Home from "./Home";
-import logo from './logo.svg';
 import './App.css';
-export const REQUEST_ENDPOINT = 'http://localhost:8080/api/'
+import {Route, BrowserRouter as Router, Switch} from "react-router-dom";
+import Header from "./components/Header";
+import Products from "./components/Products";
+import Review from "./components/Review";
+export const REQUEST_ENDPOINT = 'http://localhost:8080/mystore/'
 
 
-function App() {
-  return (
-      <Home/>
-  );
+export default function App() {
+    return (
+        <Router>
+            <Header/>
+            <Switch>
+                <Route path='/' exact>
+                    <Products />
+                </Route>
+                <Route path='/review' exact>
+                    <Review />
+                </Route>
+            </Switch>
+        </Router>
+    );
+
 }
 
-export default App;
+
+// When a <Route> matches, it will pass the context object to the component it renders as the staticContext prop
