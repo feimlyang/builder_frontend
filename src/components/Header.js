@@ -51,7 +51,7 @@ class Header extends Component {
                                                 {this.props.cart.cartProducts.map(item => (
                                                     <CartItem item={item} key={item.product.sku}/>
                                                 ))}
-                                                <h6>Total Price: C${this.props.cart.totalPrice} </h6>
+                                                <h6>Total Price: ${this.props.cart.totalPrice} </h6>
                                                 <Button
                                                     onClick={() => {
                                                         this.props.history.push('/review')

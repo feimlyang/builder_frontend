@@ -6,7 +6,6 @@ import Products from "./components/Products";
 import Review from "./components/Review";
 import Home from "./components/Home";
 import Paypal from "./components/Paypal";
-import Checkout from "./components/Checkout";
 export const REQUEST_ENDPOINT = 'http://localhost:8080/mystore/'
 
 
@@ -29,9 +28,6 @@ export default function App() {
                 </Route>
                 <Route path='/paypal' exact>
                     <Paypal />
-                </Route>
-                <Route path='/checkout' exact>
-                    <Checkout />
                 </Route>
             </Switch>
         </Router>

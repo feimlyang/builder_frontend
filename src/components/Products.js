@@ -64,7 +64,7 @@ class Products extends Component {
                                             <Card.Img className="products-card-img" variant="top" src={"https://picsum.photos/200/300?random=[1-1000]"} alt=""/>
                                             <Card.Title className={"product-info"}>
                                                 <Card.Text className={"product-name"}>{item.productName}</Card.Text>
-                                                <Card.Text className={"product-price"}>C${item.listPrice}</Card.Text>
+                                                <Card.Text className={"product-price"}>${item.listPrice}</Card.Text>
                                             </Card.Title>
                                             <Card.Footer className={"product-footer"}>
                                                 {item.stocks} in stock

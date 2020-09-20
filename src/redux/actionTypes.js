@@ -1,3 +1,4 @@
 export const ADD_TOCART = "ADD_TOCART";
 export const REMOVE_FROMCART = "REMOVE_FROMCART";
 export const UPDATE_QUANTITY = "UPDATE_QUANTITY";
+export const CLEARCART = "CLEARCART";

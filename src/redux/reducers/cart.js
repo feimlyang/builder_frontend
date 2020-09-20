@@ -1,4 +1,4 @@
-import {ADD_TOCART, REMOVE_FROMCART, UPDATE_QUANTITY} from "../actionTypes";
+import {ADD_TOCART, REMOVE_FROMCART, UPDATE_QUANTITY, CLEARCART} from "../actionTypes";
 
 const initialState = {
     cartProducts: [
@@ -19,6 +19,14 @@ export default function (state = initialState, action) {
     }
 
     switch (action.type) {
+        case CLEARCART: {
+            state = {
+                cartProducts: [],
+                totalPrice: 0
+            };
+            return {...state};
+        }
+
         case UPDATE_QUANTITY: {
             const [sku, quantity] = action.payload;
             let newTotalPrice = 0;
@@ -31,7 +39,6 @@ export default function (state = initialState, action) {
                 }
             )
             state.totalPrice = newTotalPrice;
-            // return {...state};
             return {...state, cartProducts: state.cartProducts.map(item => ({...item}))};
         }
 
