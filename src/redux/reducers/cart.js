@@ -1,9 +1,9 @@
-import {ADD_TOCART} from "../actionTypes";
+import {ADD_TOCART, REMOVE_FROMCART, UPDATE_QUANTITY} from "../actionTypes";
 
 const initialState = {
     cartProducts: [
         // {
-        //     product: {}, //action.payload
+        //     product: {},
         //     soldPrice: 0,
         //     quantity: 0
         // }
@@ -12,25 +12,58 @@ const initialState = {
 };
 
 export default function (state = initialState, action) {
+    //goto REMOVE_FROMCART if quantity = 0
+    if (action.type === UPDATE_QUANTITY && action.payload[1] <= 0) {
+        action.type = REMOVE_FROMCART;
+        action.payload = action.payload[0];
+    }
+
     switch (action.type) {
+        case UPDATE_QUANTITY: {
+            const [sku, quantity] = action.payload;
+            let newTotalPrice = 0;
+            state.cartProducts.forEach(
+                (value) => {
+                    if (value.product.sku === sku){
+                        value.quantity = quantity;
+                    }
+                    newTotalPrice += (value.soldPrice * value.quantity)
+                }
+            )
+            state.totalPrice = newTotalPrice;
+            // return {...state};
+            return {...state, cartProducts: state.cartProducts.map(item => ({...item}))};
+        }
+
+        case REMOVE_FROMCART: {
+            const sku = action.payload;
+            let newCartProducts = state.cartProducts;
+            let newTotalPrice = 0;
+            state.cartProducts.forEach(
+                (value, index) => {
+                    if (value.product.sku === sku) {
+                        newCartProducts = state.cartProducts.slice(0, index).concat(state.cartProducts.slice(index + 1, state.cartProducts.length));
+                    } else {
+                        newTotalPrice += (value.soldPrice * value.quantity)
+                    }
+                }
+            )
+            state.cartProducts = newCartProducts;
+            state.totalPrice = newTotalPrice;
+            return {...state};
+        }
+
         case ADD_TOCART: {
             const newProduct = {
                 product: action.payload,
-                soldPrice: parseFloat(action.payload.listPrice),
+                soldPrice: Number.parseFloat(action.payload.listPrice).toFixed(2),
                 quantity: 1
             };
-            // console.log("new product:" + newProduct);
-            // console.log("new product. sku:" + newProduct.product.sku);
-            // console.log("new product. product:" + newProduct.product.listPrice);
-            // console.log("new product. soldPrice:" + newProduct.soldPrice);
-            // console.log("length init: " + state.cartProducts.length)
-
             //calculate quantity and update cart
             let isEmptyCart = true;
             let isFound = false;
             if (state.cartProducts.length > 0) {
                 isEmptyCart = false;
-                console.log("length: " + state.cartProducts.length)
                 for (let eachProduct of state.cartProducts) {
                     if (eachProduct.product.sku === newProduct.product.sku) {
                         eachProduct.quantity++;
@@ -41,21 +74,18 @@ export default function (state = initialState, action) {
             if (isEmptyCart === true || (isEmptyCart === false && isFound === false)) {
                 state.cartProducts = [...state.cartProducts, newProduct]
             }
-
             //calculate totalPrice
             let newTotalPrice = 0;
             state.cartProducts.forEach(
                 (value) => {
-                    return newTotalPrice += (value.soldPrice * value.quantity);
+                    newTotalPrice += (value.soldPrice * value.quantity);
                 }
             )
             state.totalPrice = newTotalPrice;
-            console.log("total price: " + state.totalPrice);
-            console.log("new state: " + state);
 
             return {...state};
         }
         default:
-            return state;
+            return {...state};
     }
 }

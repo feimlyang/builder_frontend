@@ -5,7 +5,6 @@ import {withRouter} from "react-router-dom";
 
 class Review extends Component {
     constructor(props) {
-        console.log("Review Comp");
         super(props);
         this.state = {
             error: null,
@@ -13,6 +12,9 @@ class Review extends Component {
             result: [],
             action: "view",
             email: "",
+            payment: {
+                account: "",
+            },
             submitting: false
         };
     }
@@ -32,8 +34,7 @@ class Review extends Component {
                 orderItems: [...this.props.cart.cartProducts],
                 emailAddress: this.state.email
             }
-            console.log(JSON.stringify(order))
-            console.log(order.orderItems + "  " + order.emailAddress);
+
             fetch("http://192.168.2.16:8080/mystore/processOrder", {
                 method: "POST",
                 headers: {
@@ -41,7 +42,7 @@ class Review extends Component {
                 },
                 body: JSON.stringify(order)
             }).then(r => {
-                this.props.history.push("/")
+                this.props.history.push("/paypal")
             }).catch(error =>{
                 console.error(error)
             });
@@ -52,7 +53,7 @@ class Review extends Component {
 
 
     render() {
-        return (
+            return (
             <>
                 <div>
                     {this.props.cart.cartProducts.map(item => (
@@ -63,8 +64,6 @@ class Review extends Component {
                                     <h4>{item.product.productName}</h4><br/>
                                     Price: {item.soldPrice} CAD
                                 </Card.Text>
-                                {/*<Button*/}
-                                {/*    variant="dark">Delete</Button>*/}
                             </Card.Body>
                         </Card>
                     ))}
@@ -78,8 +77,10 @@ class Review extends Component {
                                           value={this.state.email}
                                           onChange={this.handleInputChange}/>
                         </Form.Group>
-                        <Button variant="dark" type="submit">Submit</Button>
+
+                        <Button className="btn btn-warning" type="submit">Confirm Order</Button>
                     </Form>
+
                 </div>
             </>
         );
@@ -90,3 +91,10 @@ const mapStateToProps = (state) => {
     return {cart: state.cart};
 };
 export default withRouter(connect(mapStateToProps)(Review));
+
+
+// curl -v POST https://api.sandbox.paypal.com/v1/oauth2/token \
+//   -H "Accept: application/json" \
+//   -H "Accept-Language: en_US" \
+//   -u "ATRiQ5_lP_4pnK4BxTXRMkMlSgW5J25XWBcAzjMadUG3Dw85mK9wgINxy4F96_m4Xe0-KRTWMRZSFUvO:EHeVeK0cNktfmnBdGPUErZuhsXRY5uuItgLw9F8EZbmjBEObDVdZDg9_f5F94YQGR15Fw24lBsi-Ngqv" \
+//   -d "grant_type=client_credentials"

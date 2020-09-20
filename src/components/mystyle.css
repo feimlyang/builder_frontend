@@ -1,0 +1,64 @@
+.container-cards{
+    position: relative;
+    display: flex;
+    flex-flow: row wrap;
+    align-content: flex-start;
+    text-align: center;
+    font-size: 0.8em
+}
+.products-card-item {
+    flex: 0 0 22%;
+    vertical-align: middle;
+    margin: 0.2em;
+    max-height: 35em;
+    line-height: 50%;
+    flex-direction: row;
+}
+
+.product-price{
+    font-size: 0.7em;
+    color: #282c34;
+}
+.product-name{
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #282c34;
+}
+
+.product-footer{
+    font-size: 0.85em
+
+}
+.products-card-img, .img-incart{
+    height: 60%;
+    width: 50%;
+}
+
+.navbar{
+    background-color: #C0DAD7;
+}
+
+.cart-button btn{
+    background-color: inherit;
+    outline: #C0DAD7;
+    border-radius: 10px;
+}
+
+.overlay-trigger{
+    margin-right: 5rem;
+    width: 130%;
+}
+.popover-content{
+    height: 50%;
+    margin-outside: 10px;
+    line-height: 10%;
+}
+.remove-footer{
+    line-height: 10%;
+    height: 50%;
+}
+.sub-card{
+    height: 22rem;
+}
+
+

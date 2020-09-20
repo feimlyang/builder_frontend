@@ -9,6 +9,10 @@
       name="description"
       content="Web site created using create-react-app"
     />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Ensures optimal rendering on mobile devices. -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" /> <!-- Optimal Internet Explorer compatibility -->
+
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -39,5 +43,16 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script
+            src="https://www.paypal.com/sdk/js?client-id=ATRiQ5_lP_4pnK4BxTXRMkMlSgW5J25XWBcAzjMadUG3Dw85mK9wgINxy4F96_m4Xe0-KRTWMRZSFUvO"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.
+    </script>
+
+    <div id="paypal-button-container"></div>
+
+    <script
+            src="https://www.paypal.com/sdk/js?client-id=SB_CLIENT_ID"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.
+    </script>
+
+
   </body>
 </html>
