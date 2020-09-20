@@ -60,5 +60,10 @@
 .sub-card{
     height: 22rem;
 }
+.review-card{
+    line-height: 10%;
+    max-width: 15rem;
+
+}
 
 

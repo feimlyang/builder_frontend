@@ -3,6 +3,7 @@ import {Button, Card, Form} from 'react-bootstrap';
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import Paypal from "./Paypal";
+import './mystyle.css'
 
 class Review extends Component {
     constructor(props) {
@@ -27,19 +28,17 @@ class Review extends Component {
         });
     };
 
-
-
     render() {
             return (
             <>
-                <div>
+                <div >
                     {this.props.cart.cartProducts.map(item => (
-                        <Card style={{width: '18rem'}}>
-                            <Card.Img variant="top" src="holder.js/100px180"/>
+                        <Card className={"review-card"}>
+                            <Card.Img className={"products-card-img"} variant="top" alt=""/>
                             <Card.Body>
                                 <Card.Text>
-                                    <h4>{item.product.productName}</h4><br/>
-                                    Price: ${item.soldPrice}
+                                    <h6>{item.product.productName}</h6><br/>
+                                    Price: ${item.soldPrice} x {item.quantity}
                                 </Card.Text>
                             </Card.Body>
                         </Card>
