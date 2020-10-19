@@ -6,31 +6,42 @@ import Products from "./components/Products";
 import Review from "./components/Review";
 import Home from "./components/Home";
 import Paypal from "./components/Paypal";
+import StoreManager from "./components/merchant/StoreManager";
 export const REQUEST_ENDPOINT = 'http://localhost:8080/mystore/'
 
 
 export default function App() {
     return (
         <Router>
-            <Header/>
-            <Switch>
-                <Route path='/' exact >
-                    <Products />
+            <switch>
+                <Route>
+                    <Switch>
+                        <Route path='/' exact >
+                            <Header/><Products />
+                        </Route>
+                        <Route path='/home' exact>
+                            <Header/><Home />
+                        </Route>
+                        <Route path='/products' exact>
+                            <Header/><Products />
+                        </Route>
+                        <Route path='/review' exact>
+                            <Header/><Review />
+                        </Route>
+
+                    </Switch>
                 </Route>
-                <Route path='/home' exact>
-                    <Home />
+                <Route>
+                    <Route path='/storeManager' exact>
+                        <StoreManager />
+                    </Route>
                 </Route>
-                <Route path='/products' exact>
-                    <Products />
-                </Route>
-                <Route path='/review' exact>
-                    <Review />
-                </Route>
-                <Route path='/paypal' exact>
-                    <Paypal />
-                </Route>
-            </Switch>
+            </switch>
+
+
+
         </Router>
+
     );
 }
 

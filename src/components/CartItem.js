@@ -8,6 +8,7 @@ class CartItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            placeholderValue: this.props.item.quantity,
             inputQuantity: this.props.item.quantity
         };
     };
@@ -27,6 +28,8 @@ class CartItem extends Component {
         console.log("quantity in header: " + quantity)
         this.props.updateQuantity(sku, quantity);
     };
+
+
 
 
     render() {
@@ -51,7 +54,6 @@ class CartItem extends Component {
                     <Button
                         className={"update-button btn btn-light text-info btn-sm"}
                         onClick={e => {
-                            console.log("before click quantity: " + this.state.inputQuantity)
                             this.handleUpdateQuantity(item.product.sku, this.state.inputQuantity)
                         }}>Update</Button>
                     <Button

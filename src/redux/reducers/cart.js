@@ -12,7 +12,7 @@ const initialState = {
 };
 
 export default function (state = initialState, action) {
-    //goto REMOVE_FROMCART if quantity = 0
+    //go to REMOVE_FROMCART if quantity = 0
     if (action.type === UPDATE_QUANTITY && action.payload[1] <= 0) {
         action.type = REMOVE_FROMCART;
         action.payload = action.payload[0];
@@ -90,7 +90,7 @@ export default function (state = initialState, action) {
             )
             state.totalPrice = newTotalPrice;
 
-            return {...state};
+            return {...state, cartProducts: state.cartProducts.map(item => ({...item}))};
         }
         default:
             return {...state};
