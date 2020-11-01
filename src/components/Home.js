@@ -16,17 +16,38 @@ class Home extends Component {
         const {error, message} = this.props;
         return (
             <>
-                <Jumbotron>
-                    <h1>myStore, your store!</h1>
-                    <p>
-                        <Button
-                            className="btn btn-outline-info"
-                            variant="light"
+                <div style={{marginLeft: "8%", marginRight: "8%"}}>
+                    <Jumbotron className={"banner"}
+                               style={{padding: "1.5rem", marginBottom: "1rem"}}>
+                        <div className={"row align-middle"}>
+                            <h3 className={"col-10 font-weight-bold text-uppercase"}>New Arrivals</h3>
+                            <Button
+                                className="btn btn-outline-dark btn-sm col-sm-2"
+                                variant="light"
                                 onClick={() => {
                                     this.props.history.push('/products')
                                 }}>Shop</Button>
-                    </p>
-                </Jumbotron>
+
+                        </div>
+
+
+                    </Jumbotron>
+
+                    <div id="carouselExampleSlidesOnly" className="carousel slide" data-ride="carousel">
+                        <div className="carousel-inner">
+                            <div className="carousel-item active">
+                                <img src={require('../img/home-img1.jpg')} className="d-block w-100" alt="..."/>
+                            </div>
+                            <div className="carousel-item">
+                                <img src={require('../img/home-img2.jpg')} className="d-block w-100" alt="..."/>
+                            </div>
+                            <div className="carousel-item">
+                                <img src={require('../img/home-img3.jpg')} className="d-block w-100" alt="..."/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </>
         )
     }

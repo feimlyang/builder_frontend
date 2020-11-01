@@ -4,7 +4,7 @@ import {withRouter} from "react-router-dom";
 import {clearCart} from "../redux/actions";
 import {connect} from "react-redux";
 
-// https://www.npmjs.com/package/react-paypal-button-v2
+
 class Paypal extends Component {
     constructor(props) {
         super(props);
@@ -22,7 +22,7 @@ class Paypal extends Component {
         const {totalPrice, cartProducts, email} = this.props;
         return (
             <>
-                <PayPalButton
+                <PayPalButton className={"w-50 p-3 h-50 d-inline-block"}
                     amount={totalPrice}
                     // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
                     onSuccess={(details, data) => {
@@ -35,9 +35,7 @@ class Paypal extends Component {
                                 paypalOrderId: data.orderID
                             }
                         );
-
-                        // OPTIONAL: Call your server to save the transaction
-                        return fetch("http://192.168.2.16:8080/mystore/processOrder", {
+                        return fetch("/mystore/processOrder", {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json"

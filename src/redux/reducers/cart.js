@@ -66,6 +66,7 @@ export default function (state = initialState, action) {
                 soldPrice: Number.parseFloat(action.payload.listPrice).toFixed(2),
                 quantity: 1
             };
+            console.log("redux: " + newProduct.product.imageURL);
             //calculate quantity and update cart
             let isEmptyCart = true;
             let isFound = false;
