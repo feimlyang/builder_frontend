@@ -4,7 +4,7 @@ import {addToCart} from "../redux/actions";
 import Container from 'react-bootstrap/Container';
 import IconButton from "@material-ui/core/IconButton";
 import ControlPointIcon from '@material-ui/icons/ControlPoint';
-
+import Pagination from "react-bootstrap/Pagination";
 
 class Products extends Component {
     constructor(props) {
@@ -55,7 +55,7 @@ class Products extends Component {
     }
 
     render() {
-        const {error, message, products} = this.state;
+        const {error, products} = this.state;
         if (error) {
             return <div>Error: {error.message}</div>;
         } else {
@@ -103,8 +103,8 @@ class Products extends Component {
                                 ))}
                             </div>
                         </Container>
-                    </div>
 
+                    </div>
                 </>
 
             );

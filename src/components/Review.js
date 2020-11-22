@@ -3,6 +3,7 @@ import {Card} from 'react-bootstrap';
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import Paypal from "./Paypal";
+import Footer from "./Footer";
 
 
 class Review extends Component {
@@ -77,6 +78,8 @@ class Review extends Component {
 
                     </div>
                 </div>
+
+                <Footer/>
 
             </>
         );

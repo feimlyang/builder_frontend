@@ -2,7 +2,7 @@ import React, {Component, useState} from 'react';
 import {connect} from "react-redux";
 import {
     Navbar,
-    Nav,
+    Nav, Form,
 } from 'react-bootstrap';
 import {withRouter, NavLink} from 'react-router-dom';
 import {removeFromCart, updateQuantity} from "../redux/actions";
@@ -40,12 +40,24 @@ class Header extends Component {
                         style={{marginLeft: "7%", marginRight: "7%"}}>
                     <Navbar.Brand className={" font-weight-bold"}
                                   href="/home"
-                                  style={{fontSize: "xx-large"}}>myStore</Navbar.Brand>
+                                  style={{fontSize: "xx-large", fontFamily: "Copperplate"}}>CARTOO</Navbar.Brand>
                     <Nav className="mr-auto">
                         <NavLink className="nav-link" to="/home">Home</NavLink>
                         <NavLink className="nav-link" to="/products">Shop</NavLink>
+                        <NavLink className="nav-link" to="/home">About</NavLink>
                     </Nav>
 
+
+                    {/*search*/}
+                    <div>
+                        <form className="form-inline d-flex justify-content-center md-form form-sm mt-0">
+                            <input className="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search"
+                                   aria-label="Search"/>
+                        </form>
+                    </div>
+
+
+                    {/*cart*/}
                     <>
                         {['right'].map((anchor) => (
                             <React.Fragment key={anchor}>
@@ -77,8 +89,8 @@ class Header extends Component {
                                 </Drawer>
                             </React.Fragment>
                         ))}
-
                     </>
+
 
                 </Navbar>
             </header>

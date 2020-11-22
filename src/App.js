@@ -7,6 +7,7 @@ import Review from "./components/Review";
 import Home from "./components/Home";
 import Paypal from "./components/Paypal";
 import StoreManager from "./components/merchant/StoreManager";
+import Footer from "./components/Footer";
 export const REQUEST_ENDPOINT = 'http://localhost:8080/mystore/'
 
 
@@ -17,20 +18,21 @@ export default function App() {
                 <Route>
                     <Switch>
                         <Route path='/' exact >
-                            <Header/><Products />
+                            <Header/><Products/><Footer/>
                         </Route>
                         <Route path='/home' exact>
-                            <Header/><Home />
+                            <Header/><Home/><Footer/>
                         </Route>
                         <Route path='/products' exact>
-                            <Header/><Products />
+                            <Header/><Products/><Footer/>
                         </Route>
                         <Route path='/review' exact>
-                            <Header/><Review />
+                            <Header/><Review/><Footer/>
                         </Route>
 
                     </Switch>
                 </Route>
+
                 <Route>
                     <Route path='/storeManager' exact>
                         <StoreManager />
